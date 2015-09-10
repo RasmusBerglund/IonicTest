@@ -19,6 +19,39 @@ angular.module('starter.controllers', [])
   };
 })
 
+
+.controller('CardsCtrl', function ($scope, TDCardDelegate) {
+    var cardTypes = [
+      { image: 'http://thebanginbeats.com/wp-content/uploads/2015/09/coldplay-4fc0c69c452a3.jpg' },
+      { image: 'http://cdn.hitfix.com/photos/5555745/Coldplay.jpg' },
+      { image: 'http://i.ytimg.com/vi/BDaWsqytrfI/hqdefault.jpg' }
+    ];
+
+    $scope.cardDestroyed = function (index) {
+        $scope.cards.splice(index, 1);
+    };
+
+    $scope.addCard = function () {
+        var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+        newCard.id = Math.random();
+        $scope.cards.unshift(angular.extend({}, newCard));
+    }
+
+    $scope.cards = [];
+    for (var i = 0; i < 3; i++) $scope.addCard();
+})
+
+.controller('CardCtrl', function ($scope, TDCardDelegate) {
+    $scope.cardSwipedLeft = function (index) {
+        console.log('LEFT SWIPE');
+        $scope.addCard();
+    };
+    $scope.cardSwipedRight = function (index) {
+        console.log('RIGHT SWIPE');
+        $scope.addCard();
+    };
+})
+
 .controller("ExampleController", function($scope) {
  
     $scope.savePerson = function(firstname, lastname) {
