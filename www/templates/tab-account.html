@@ -6,4 +6,11 @@
     </ion-toggle>
     </ion-list>
   </ion-content>
+    <ion-content ng-controller="ExampleController">
+        <button class="button" ng-click="savePerson('Nic', 'Raboy')">Save Nic Raboy</button>
+        <button class="button" ng-click="savePerson('Maria', 'Campos')">Save Maria Campos</button>
+        <button class="button" ng-click="savePerson('Bruce', 'Raboy')">Save Bruce Raboy</button>
+        <button class="button" ng-click="getPeople()">Print All People</button>
+        <button class="button" ng-click="getPeople({lastname: 'Raboy'})">Print All Raboys</button>
+    </ion-content>
 </ion-view>
