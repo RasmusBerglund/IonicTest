@@ -28,6 +28,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
     }
 })
 
+
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
@@ -46,12 +47,15 @@ angular.module('starter.controllers', ['ngOpenFB'])
 })
 
 
-.controller('CardsCtrl', function ($scope, TDCardDelegate) {
+.controller('CardsCtrl', function ($scope, TDCardDelegate, ngFB) {
     var cardTypes = [
       { image: 'http://thebanginbeats.com/wp-content/uploads/2015/09/coldplay-4fc0c69c452a3.jpg' },
       { image: 'http://cdn.hitfix.com/photos/5555745/Coldplay.jpg' },
       { image: 'http://i.ytimg.com/vi/BDaWsqytrfI/hqdefault.jpg' }
     ];
+    $scope.getStatus = function () {
+        ngFB.getLoginStatus();
+    }
 
     $scope.cardDestroyed = function (index) {
         $scope.cards.splice(index, 1);

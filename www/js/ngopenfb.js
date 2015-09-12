@@ -18,6 +18,7 @@ angular.module('ngOpenFB', [])
             var deferred = $q.defer();
             $window.openFB.login(function(result) {
                 if (result.status === "connected") {
+                    alert("PENIS");
                     deferred.resolve(result);
                 } else {
                     deferred.reject(result);
@@ -64,6 +65,7 @@ angular.module('ngOpenFB', [])
             $window.openFB.getLoginStatus(
                 function(result) {
                     deferred.resolve(result);
+                    console.log(result);
                 }
             );
             return deferred.promise;
