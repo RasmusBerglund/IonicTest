@@ -1,6 +1,32 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngOpenFB'])
 
-.controller('DashCtrl', function($scope) {})
+.controller('AppCtrl', function ($scope, ngFB) {
+    $scope.fbLogin = function () {
+    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+        function (response) {
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                $scope.closeLogin();
+            } else {
+                alert('Facebook login failed');
+            }
+        });
+    }
+})
+
+.controller('DashCtrl', function ($scope, $ionicModal, $timeout, ngFB) {
+     $scope.fbLogin = function () {
+    ngFB.login({scope: 'email'}).then(
+        function (response) {
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                $scope.closeLogin();
+            } else {
+                alert('Facebook login failed');
+            }
+        });
+    }
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
